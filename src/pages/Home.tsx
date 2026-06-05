@@ -88,13 +88,6 @@ const HeroSection = () => (
           </a>
         </div>
       </ScrollReveal>
-      <ScrollReveal delay={280}>
-        <div className="flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
-          <span className="flex items-center gap-1.5"><Users className="w-4 h-4 text-primary" /> 500+ Active Ambassadors</span>
-          <span className="flex items-center gap-1.5"><TrendingUp className="w-4 h-4 text-primary" /> $50K+ Paid Out</span>
-          <span className="flex items-center gap-1.5"><Gift className="w-4 h-4 text-primary" /> Up to 20% Commission</span>
-        </div>
-      </ScrollReveal>
     </div>
   </section>
 );
