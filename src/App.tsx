@@ -8,13 +8,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import { applyTheme, getInitialTheme } from "./components/ThemeToggle";
 
 const queryClient = new QueryClient();
 
 const App = () => {
-  // Force dark theme
+  // Apply persisted theme on mount (defaults to light)
   useEffect(() => {
-    document.documentElement.classList.add("dark");
+    applyTheme(getInitialTheme());
   }, []);
 
   return (

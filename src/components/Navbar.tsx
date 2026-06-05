@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const navLinks = [
   { label: "Overview", href: "#overview" },
@@ -54,12 +55,13 @@ const Navbar = () => {
           <a
             href="/"
             onClick={(e) => { e.preventDefault(); navigate("/"); }}
-            className="flex items-center gap-2 group"
+            className="flex items-center gap-2.5 group"
           >
-            <span className="text-xl font-bold tracking-tight text-foreground" style={{ fontFamily: "'Libre Baskerville', serif" }}>
+            <img src="/favicon.png" alt="StarStore" className="w-7 h-7 rounded-md" />
+            <span className="text-lg sm:text-xl font-bold tracking-tight text-foreground" style={{ fontFamily: "'Libre Baskerville', serif" }}>
               StarStore
             </span>
-            <span className="text-xs font-medium text-muted-foreground bg-secondary px-2 py-0.5 rounded-full">
+            <span className="hidden sm:inline-block text-[10px] font-medium text-muted-foreground bg-secondary px-2 py-0.5 rounded-full">
               Ambassador
             </span>
           </a>
@@ -94,16 +96,22 @@ const Navbar = () => {
                 {l.label} ↗
               </a>
             ))}
+            <div className="ml-1 pl-1 border-l border-border">
+              <ThemeToggle />
+            </div>
           </div>
 
-          {/* Mobile toggle */}
-          <button
-            onClick={() => setOpen(!open)}
-            className="md:hidden p-2 rounded-md text-foreground hover:bg-secondary active:scale-95 transition-transform"
-            aria-label="Toggle navigation"
-          >
-            {open ? <X size={20} /> : <Menu size={20} />}
-          </button>
+          {/* Mobile actions */}
+          <div className="md:hidden flex items-center gap-1">
+            <ThemeToggle />
+            <button
+              onClick={() => setOpen(!open)}
+              className="p-2 rounded-md text-foreground hover:bg-secondary active:scale-95 transition-transform"
+              aria-label="Toggle navigation"
+            >
+              {open ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </div>
       </div>
 
