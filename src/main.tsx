@@ -12,7 +12,7 @@ if (!rootElement) {
 const renderBootFallback = () => {
   if (rootElement.childElementCount > 0) return;
 
-  document.documentElement.classList.add("dark");
+  // Respect persisted theme; do not force dark here
   rootElement.innerHTML = `
     <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:hsl(224 71% 4%);color:hsl(210 40% 98%);font-family:Inter,system-ui,sans-serif;">
       <div style="max-width:560px;text-align:center;">
