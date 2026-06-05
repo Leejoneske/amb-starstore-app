@@ -43,9 +43,11 @@ const HeroSection = () => (
     />
     <div className="max-w-4xl mx-auto text-center">
       <ScrollReveal>
-        <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-primary bg-primary/8 px-3 py-1 rounded-full mb-6">
-          <Star className="w-3.5 h-3.5" /> Official Guide
-        </span>
+        <img
+          src="/favicon.png"
+          alt="StarStore logo"
+          className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl mx-auto mb-6 shadow-md"
+        />
       </ScrollReveal>
       <ScrollReveal delay={80}>
         <h1
