@@ -55,12 +55,13 @@ const Navbar = () => {
           <a
             href="/"
             onClick={(e) => { e.preventDefault(); navigate("/"); }}
-            className="flex items-center gap-2 group"
+            className="flex items-center gap-2.5 group"
           >
-            <span className="text-xl font-bold tracking-tight text-foreground" style={{ fontFamily: "'Libre Baskerville', serif" }}>
+            <img src="/favicon.png" alt="StarStore" className="w-7 h-7 rounded-md" />
+            <span className="text-lg sm:text-xl font-bold tracking-tight text-foreground" style={{ fontFamily: "'Libre Baskerville', serif" }}>
               StarStore
             </span>
-            <span className="text-xs font-medium text-muted-foreground bg-secondary px-2 py-0.5 rounded-full">
+            <span className="hidden sm:inline-block text-[10px] font-medium text-muted-foreground bg-secondary px-2 py-0.5 rounded-full">
               Ambassador
             </span>
           </a>
