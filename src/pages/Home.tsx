@@ -3,7 +3,7 @@ import NewsletterSignup from "@/components/NewsletterSignup";
 import ScrollReveal from "@/components/ScrollReveal";
 import {
   Rocket,
-  Users,
+  
   TrendingUp,
   Gift,
   Star,
