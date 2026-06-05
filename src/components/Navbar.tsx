@@ -96,16 +96,22 @@ const Navbar = () => {
                 {l.label} ↗
               </a>
             ))}
+            <div className="ml-1 pl-1 border-l border-border">
+              <ThemeToggle />
+            </div>
           </div>
 
-          {/* Mobile toggle */}
-          <button
-            onClick={() => setOpen(!open)}
-            className="md:hidden p-2 rounded-md text-foreground hover:bg-secondary active:scale-95 transition-transform"
-            aria-label="Toggle navigation"
-          >
-            {open ? <X size={20} /> : <Menu size={20} />}
-          </button>
+          {/* Mobile actions */}
+          <div className="md:hidden flex items-center gap-1">
+            <ThemeToggle />
+            <button
+              onClick={() => setOpen(!open)}
+              className="p-2 rounded-md text-foreground hover:bg-secondary active:scale-95 transition-transform"
+              aria-label="Toggle navigation"
+            >
+              {open ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </div>
       </div>
 
