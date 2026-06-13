@@ -1,0 +1,244 @@
+{
+  "title": "StarStore Ambassador Program",
+  "description": "Join the StarStore Ambassador Program and earn monthly commissions promoting Telegram Stars and Premium subscriptions",
+  "url": "https://amb.starstore.app",
+  "lastUpdated": "2024-01-01",
+  "sections": {
+    "hero": {
+      "title": "StarStore Ambassador Program",
+      "subtitle": "Everything you need to know — from getting started and earning commissions, to understanding our policies and managing your membership.",
+      "cta": "Apply in Telegram Mini App or Apply on Web"
+    },
+    "overview": {
+      "title": "Program Overview",
+      "content": "The StarStore Ambassador Program is an affiliate program designed for content creators, influencers, and community leaders. Earn monthly commissions by promoting Telegram Stars and Premium subscriptions. Join one of four tiers (Explorer, Connector, Pioneer, or Elite) and start earning today."
+    },
+    "how_it_works": {
+      "title": "How It Works",
+      "steps": [
+        {
+          "step": 1,
+          "title": "Apply",
+          "description": "Submit your application through our Telegram Mini App or web portal. Applications are reviewed within 1-3 business days."
+        },
+        {
+          "step": 2,
+          "title": "Get Your Referral Links",
+          "description": "Once approved, receive your personalized ambassador dashboard with referral links and tracking tools."
+        },
+        {
+          "step": 3,
+          "title": "Share & Promote",
+          "description": "Share your referral links with your community through your channel, blog, or social media."
+        },
+        {
+          "step": 4,
+          "title": "Earn Commissions",
+          "description": "Each completed transaction through your links generates a commission (10-20% depending on tier)."
+        },
+        {
+          "step": 5,
+          "title": "Receive Monthly Payouts",
+          "description": "Get paid in USDT on the TON network on the 1st of each month. No minimum payout amount."
+        }
+      ]
+    },
+    "tiers": [
+      {
+        "name": "Explorer",
+        "commission": "10%",
+        "requirements": "Beginner tier, no minimum followers",
+        "benefits": [
+          "10% commission on all qualifying transactions",
+          "Basic marketing materials",
+          "Email support",
+          "Monthly reporting"
+        ]
+      },
+      {
+        "name": "Connector",
+        "commission": "15%",
+        "requirements": "Growing creators with engagement",
+        "benefits": [
+          "15% commission on all qualifying transactions",
+          "Advanced marketing materials",
+          "Priority email support",
+          "Dedicated ambassador channel",
+          "Weekly performance reports"
+        ]
+      },
+      {
+        "name": "Pioneer",
+        "commission": "18%",
+        "requirements": "Established content creators",
+        "benefits": [
+          "18% commission on all qualifying transactions",
+          "Custom marketing campaigns",
+          "Live chat support",
+          "API access",
+          "Monthly strategy calls"
+        ]
+      },
+      {
+        "name": "Elite",
+        "commission": "20% + Revenue Share",
+        "requirements": "Top performers and influencers",
+        "benefits": [
+          "20% commission on all qualifying transactions",
+          "Revenue sharing opportunities",
+          "Custom integrations",
+          "24/7 priority support",
+          "Quarterly business reviews",
+          "Co-marketing opportunities"
+        ]
+      }
+    ],
+    "commissions": {
+      "title": "Commission Rates",
+      "description": "Our commission structure rewards high performers",
+      "rates": [
+        {
+          "tier": "Explorer",
+          "rate": "10%"
+        },
+        {
+          "tier": "Connector",
+          "rate": "15%"
+        },
+        {
+          "tier": "Pioneer",
+          "rate": "18%"
+        },
+        {
+          "tier": "Elite",
+          "rate": "20%"
+        }
+      ],
+      "note": "Only completed, non-refunded transactions count towards commissions"
+    },
+    "payouts": {
+      "title": "Payout Information",
+      "frequency": "Monthly on the 1st of each month",
+      "method": "USDT on TON Network (Free)",
+      "alternatives": "Alternative methods available with potential processing fees",
+      "minimum": "No minimum",
+      "cap": "No earning cap",
+      "details": [
+        "USDT transfers are completely free",
+        "Alternative payout methods may have processing fees deducted",
+        "Payouts are automatic and require no action from you",
+        "All payouts are in USDT on the TON blockchain"
+      ]
+    },
+    "requirements": {
+      "title": "Eligibility Requirements",
+      "requirements": [
+        "Must be 18+ years old",
+        "Active Telegram account",
+        "Valid application submission",
+        "Meet content quality standards",
+        "No minimum follower count"
+      ],
+      "note": "We value quality engagement over follower count. Many successful ambassadors started with fewer than 500 followers."
+    },
+    "resources": {
+      "title": "Resources & Support",
+      "resources": [
+        {
+          "category": "Marketing Materials",
+          "items": [
+            "Promotional graphics and templates",
+            "Swipe copy and content suggestions",
+            "Banner ads and social media assets",
+            "Video clips and animations"
+          ]
+        },
+        {
+          "category": "Support",
+          "items": [
+            "Live Telegram support",
+            "Dedicated ambassador channel",
+            "Email support (with priority for higher tiers)",
+            "Monthly webinars and training"
+          ]
+        },
+        {
+          "category": "Analytics",
+          "items": [
+            "Real-time performance dashboard",
+            "Monthly detailed reports",
+            "Conversion tracking",
+            "Earnings visualizations"
+          ]
+        },
+        {
+          "category": "Advanced",
+          "items": [
+            "API access (Elite tier)",
+            "Custom integrations",
+            "Strategic partnership opportunities",
+            "Revenue sharing programs"
+          ]
+        }
+      ]
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "questions": [
+        {
+          "q": "How do I join the StarStore Ambassador Program?",
+          "a": "Apply through our Telegram Mini App at https://t.me/TgStarStore_bot?startapp=ambassador or on the web at https://starstore.app/ambassador. Applications are reviewed within 1–3 business days."
+        },
+        {
+          "q": "How long does it take to get approved?",
+          "a": "Most applications are reviewed within 1–3 business days. During high-volume periods, it may take up to 5 business days."
+        },
+        {
+          "q": "Can I be an ambassador without a large following?",
+          "a": "Yes. We value quality over quantity. Many top performers started with fewer than 500 followers."
+        },
+        {
+          "q": "How are commissions calculated?",
+          "a": "Commissions range from approximately 10% to 20% of qualifying transactions, based on your ambassador level. Only completed, non-refunded transactions count."
+        },
+        {
+          "q": "What payout methods are available?",
+          "a": "USDT on the TON network is recommended and free. Alternative methods may incur processing fees deducted from earnings. Payouts are issued on the 1st of each month with no minimum."
+        },
+        {
+          "q": "Is there a limit to how much I can earn?",
+          "a": "No. There is no earning cap. Elite-level ambassadors also participate in revenue sharing."
+        },
+        {
+          "q": "What happens if a customer gets a refund?",
+          "a": "Refunded transactions do not count towards your commissions. Only completed, non-refunded transactions generate commission credits."
+        },
+        {
+          "q": "Can I change my payout method?",
+          "a": "Yes. You can update your payout method in your ambassador dashboard at any time."
+        },
+        {
+          "q": "Are there any fees to join?",
+          "a": "No. The program is completely free to join. There are no startup costs or hidden fees."
+        },
+        {
+          "q": "How often do I receive payouts?",
+          "a": "Payouts are issued automatically on the 1st of each month in USDT. There is no minimum payout threshold."
+        }
+      ]
+    },
+    "contact": {
+      "title": "Contact & Support",
+      "email": "support@starstore.app",
+      "telegram": {
+        "app": "https://t.me/StarStore_app",
+        "bot": "https://t.me/TgStarStore_bot"
+      },
+      "website": {
+        "ambassador": "https://amb.starstore.app",
+        "main": "https://starstore.app",
+        "blog": "https://starstore.app/blog"
+      }
+    }
+  }
+}
