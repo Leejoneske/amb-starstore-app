@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://amb.starstore.app
+Sitemap: https://amb.starstore.app/sitemap.xml
