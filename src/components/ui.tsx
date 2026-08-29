@@ -104,10 +104,10 @@ export function Button({
   external?: boolean;
 }) {
   const base =
-    'inline-flex h-12 items-center justify-center gap-2 rounded-pill px-6 text-[15px] font-bold tracking-[-0.2px] transition-opacity';
+    'inline-flex h-12 items-center justify-center gap-2 rounded-pill px-6 text-[15px] font-bold tracking-[-0.2px] transition-colors active:scale-[0.975]';
   const styles =
     variant === 'primary'
-      ? 'bg-accent text-on-accent hover:opacity-90'
+      ? 'bg-accent text-on-accent hover:bg-accent-hover'
       : 'border border-line text-ink hover:border-ink';
 
   const body = (

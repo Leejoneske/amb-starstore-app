@@ -122,16 +122,22 @@ It is the only mark this site uses, in the header and the footer. Do not draw
 a new one.
 
 The palette is read out of `app-web/src/app/globals.css` in the StarStore app
-rather than picked to match it, and the token that matters most is the action
-colour. `Button.module.css` in the app states it plainly:
+rather than picked to match it.
 
-> Ink is the action colour. There is no second accent: a screen has one thing
-> to do and it is black, everything else is a surface or a tint.
+Buttons are the app's `--bg`, the warm light grey `#F1EEEA` the app itself sits
+on, with ink written on top. The app presses ink, and `Button.module.css` there
+says so, but the same button behaves differently in the two places: in the app
+it lands on grey and is the one thing a screen has to do, while here it lands
+on a white reference page and reads as a black slab dropped into a document.
+So this site takes the app's ground rather than its action.
 
-So every button here is ink `#0B0A09` with white text, flipping to light on
-dark exactly as the app's `--accent` / `--on-accent` pair does. Clay `#DCC3AD`
-is the mark beside a section heading, never something to press. Gold belongs
-to the Telegram star glyph alone.
+Dark cannot use `--bg` for both, or the button becomes the page. It takes the
+app's `--panel` (`#272320`) instead, which is the raised slab that token exists
+for. `--accent-hover` is one step along in each theme, because a soft fill
+cannot fade on hover the way a dark one can: it would disappear into the page.
+
+Clay `#DCC3AD` is the mark beside a section heading, never something to press.
+Gold belongs to the Telegram star glyph alone.
 
 The ground is pure white. The warm off-white this site used to carry made its
 pages look tinted next to the app, which is white.

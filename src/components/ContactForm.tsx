@@ -154,7 +154,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={sending}
-        className="mt-6 h-12 rounded-pill bg-accent px-7 text-[15px] font-bold tracking-[-0.2px] text-on-accent transition-opacity hover:opacity-90 disabled:opacity-40"
+        className="mt-6 h-12 rounded-pill bg-accent px-7 text-[15px] font-bold tracking-[-0.2px] text-on-accent transition-colors hover:bg-accent-hover disabled:opacity-40"
       >
         {sending ? 'Sending' : 'Send message'}
       </button>

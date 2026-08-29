@@ -20,6 +20,7 @@ const config: Config = {
         clay: 'rgb(var(--clay) / <alpha-value>)',
         gold: 'rgb(var(--gold) / <alpha-value>)',
         accent: 'rgb(var(--accent) / <alpha-value>)',
+        'accent-hover': 'rgb(var(--accent-hover) / <alpha-value>)',
         'on-accent': 'rgb(var(--on-accent) / <alpha-value>)',
       },
       fontFamily: {

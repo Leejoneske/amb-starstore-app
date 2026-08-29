@@ -66,7 +66,7 @@ export function Nav() {
             href={LINKS.apply}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden h-10 items-center rounded-pill bg-accent px-5 text-sm font-bold tracking-[-0.2px] text-on-accent transition-opacity hover:opacity-90 sm:inline-flex"
+            className="hidden h-10 items-center rounded-pill bg-accent px-5 text-sm font-bold tracking-[-0.2px] text-on-accent transition-colors hover:bg-accent-hover sm:inline-flex"
           >
             Apply
           </a>

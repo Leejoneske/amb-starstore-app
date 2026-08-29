@@ -6,13 +6,17 @@
  * The palette is the StarStore app's own, read from app-web/src/app/globals.css
  * rather than picked to match it.
  *
- * The one that matters is the action colour. Button.module.css in the app says
- * it plainly: ink is the action colour, and there is no second accent. So every
- * button here is black on white and flips to light on dark, exactly as the app
- * does, and clay is the mark beside a heading rather than a thing to press.
+ * Buttons take the app's own background, --bg: the warm light grey the app
+ * sits on. Ink is what the app presses, but a black slab on a white reference
+ * page reads far heavier here than the same button does inside the app, where
+ * it lands on grey and is one action on one screen. This page is a document
+ * with a button in it, so the button is soft and the ink goes on top of it.
  *
- * The ground is pure white. The warm off-white this used to carry made the
- * pages look tinted next to the app, which is white.
+ * Dark cannot use --bg for both, or the button becomes the page. It takes the
+ * app's --panel instead, which is the raised slab that token exists for.
+ *
+ * The page ground is pure white. The warm off-white this used to carry made
+ * the pages look tinted next to the app, which is white.
  */
 :root {
   --ink: 11 10 9;
@@ -24,9 +28,10 @@
   --clay: 220 195 173;
   --gold: 245 179 1;
 
-  /* The app's --accent / --on-accent pair. */
-  --accent: 11 10 9;
-  --on-accent: 255 255 255;
+  /* The app's --bg, which is what a button is made of here. */
+  --accent: 241 238 234;
+  --accent-hover: 231 227 222;
+  --on-accent: 11 10 9;
 
   color-scheme: light;
 }
@@ -41,8 +46,10 @@
   --clay: 220 195 173;
   --gold: 245 179 1;
 
-  --accent: 244 240 234;
-  --on-accent: 18 17 16;
+  /* The app's --panel: a raised slab, since --bg here is the page itself. */
+  --accent: 39 35 32;
+  --accent-hover: 51 46 42;
+  --on-accent: 244 240 234;
 
   color-scheme: dark;
 }
@@ -58,8 +65,9 @@
     --clay: 220 195 173;
     --gold: 245 179 1;
 
-    --accent: 244 240 234;
-    --on-accent: 18 17 16;
+    --accent: 39 35 32;
+    --accent-hover: 51 46 42;
+    --on-accent: 244 240 234;
 
     color-scheme: dark;
   }
