@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>StarStore Ambassador Program</title>
-  <subtitle>Updates, tier announcements, and news from the StarStore Ambassador Program.</subtitle>
+  <subtitle>Updates and announcements from the StarStore Ambassador Program.</subtitle>
   <link href="https://amb.starstore.app/feed.atom" rel="self" />
   <link href="https://amb.starstore.app/" />
   <id>https://amb.starstore.app/</id>
-  <updated>2026-05-07T00:00:00Z</updated>
+  <updated>2026-08-29T00:00:00Z</updated>
   <author>
     <name>StarStore</name>
     <email>support@starstore.app</email>
   </author>
   <entry>
-    <title>Ambassador Program Launched</title>
+    <title>The programme guide has been rewritten</title>
+    <link href="https://amb.starstore.app/earnings/" />
+    <id>https://amb.starstore.app/earnings/</id>
+    <updated>2026-08-29T00:00:00Z</updated>
+    <summary>Every published rate now matches what StarStore pays: 30% of margin on every referred trade, the same at all five levels, up to $50 per referral, paid in USDT on TON on the 1st of each month.</summary>
+  </entry>
+  <entry>
+    <title>Ambassador Program launched</title>
     <link href="https://amb.starstore.app/" />
     <id>https://amb.starstore.app/#launch</id>
     <updated>2026-05-07T00:00:00Z</updated>
-    <summary>Join the StarStore Ambassador Program — earn monthly commissions promoting Telegram Stars and Premium subscriptions across three tiers.</summary>
+    <summary>Earn a share of every trade your referrals make on StarStore, promoting Telegram Stars and Premium subscriptions.</summary>
   </entry>
 </feed>

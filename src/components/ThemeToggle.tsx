@@ -1,47 +1,64 @@
-import { useEffect, useState } from "react";
-import { Moon, Sun } from "lucide-react";
+'use client';
 
-export type Theme = "light" | "dark";
+import { useEffect, useState } from 'react';
 
-const STORAGE_KEY = "starstore-theme";
+type Theme = 'light' | 'dark';
 
-export const getInitialTheme = (): Theme => {
-  if (typeof window === "undefined") return "light";
-  const stored = window.localStorage.getItem(STORAGE_KEY) as Theme | null;
-  if (stored === "light" || stored === "dark") return stored;
-  return "light";
-};
-
-export const applyTheme = (theme: Theme) => {
-  const root = document.documentElement;
-  root.classList.toggle("dark", theme === "dark");
-};
-
-const ThemeToggle = () => {
-  const [theme, setTheme] = useState<Theme>(getInitialTheme);
+/**
+ * Light and dark, remembered.
+ *
+ * The stored choice is applied by an inline script in the document head, before
+ * the first paint, so a reader who chose dark never sees a white flash. This
+ * component only reads back what that script decided and lets it be changed.
+ */
+export function ThemeToggle() {
+  const [theme, setTheme] = useState<Theme | null>(null);
 
   useEffect(() => {
-    applyTheme(theme);
-    try {
-      window.localStorage.setItem(STORAGE_KEY, theme);
-    } catch {
-      /* ignore */
-    }
-  }, [theme]);
+    const attribute = document.documentElement.dataset.theme as Theme | undefined;
+    if (attribute) return setTheme(attribute);
+    setTheme(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  }, []);
 
-  const toggle = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
-  const isDark = theme === "dark";
+  const swap = () => {
+    const next: Theme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(next);
+    document.documentElement.dataset.theme = next;
+    // A browser with site data blocked throws on write rather than no-opping.
+    try {
+      localStorage.setItem('theme', next);
+    } catch {
+      /* the choice lasts for this page view only */
+    }
+  };
 
   return (
     <button
-      onClick={toggle}
-      aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
-      title={isDark ? "Switch to light theme" : "Switch to dark theme"}
-      className="p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-secondary/60 transition-colors"
+      type="button"
+      onClick={swap}
+      className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-muted transition-colors hover:text-ink"
+      aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
     >
-      {isDark ? <Sun size={18} /> : <Moon size={18} />}
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+        {theme === 'dark' ? (
+          <>
+            <circle cx="12" cy="12" r="4.2" stroke="currentColor" strokeWidth="1.8" />
+            <path
+              d="M12 2.4v2.2M12 19.4v2.2M2.4 12h2.2M19.4 12h2.2M5.2 5.2l1.6 1.6M17.2 17.2l1.6 1.6M18.8 5.2l-1.6 1.6M6.8 17.2l-1.6 1.6"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+            />
+          </>
+        ) : (
+          <path
+            d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.2 8.2 0 1 0 10.2 10.2Z"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinejoin="round"
+          />
+        )}
+      </svg>
     </button>
   );
-};
-
-export default ThemeToggle;
+}

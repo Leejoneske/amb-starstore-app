@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Two themes, defined the same way round: the light palette is the base and
+ * dark redefines only the tokens. A colour whose only definition lives inside
+ * a dark block is a colour that disappears in light mode.
+ */
+:root {
+  --ink: 11 10 9;
+  --paper: 250 247 244;
+  --clay: 220 195 173;
+  --gold: 245 179 1;
+
+  --surface: 255 253 251;
+  --line: 226 217 208;
+  --muted: 110 102 95;
+  --accent: 141 106 74;
+
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --ink: 250 247 244;
+  --paper: 11 10 9;
+  --clay: 220 195 173;
+
+  --surface: 22 20 18;
+  --line: 44 40 36;
+  --muted: 154 145 136;
+  --accent: 220 195 173;
+
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --ink: 250 247 244;
+    --paper: 11 10 9;
+    --clay: 220 195 173;
+
+    --surface: 22 20 18;
+    --line: 44 40 36;
+    --muted: 154 145 136;
+    --accent: 220 195 173;
+
+    color-scheme: dark;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-line;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: rgb(var(--clay));
+    color: rgb(11 10 9);
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--accent));
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  /* The page's own reading column, used by every long-form section. */
+  .shell {
+    @apply mx-auto w-full max-w-shell px-5 sm:px-8;
+  }
+
+  .rule {
+    @apply h-px w-full bg-line;
+  }
+}
