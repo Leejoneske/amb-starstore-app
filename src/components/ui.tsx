@@ -9,7 +9,7 @@ import { LINKS } from '@/lib/program';
  */
 
 /** Icons come from lucide-react, the set the site already depended on. */
-export type Icon = ComponentType<{ size?: number | string; strokeWidth?: number; className?: string }>;
+type Icon = ComponentType<{ size?: number | string; strokeWidth?: number; className?: string }>;
 
 /**
  * The product name, in running text, linked to the Mini App.
@@ -80,8 +80,8 @@ export function Card({ children, className = '' }: { children: ReactNode; classN
   );
 }
 
-/** A headline figure, for the numbers somebody came to find. */
-export function Stat({
+/** A headline figure. Only ever rendered by StatRow. */
+function Stat({
   value,
   label,
   note,
@@ -183,8 +183,8 @@ export function Steps({ items }: { items: { title: string; body: string }[] }) {
   );
 }
 
-/** A short feature, with its icon. */
-export function Feature({ icon: Glyph, title, body }: { icon: Icon; title: string; body: string }) {
+/** A short feature with its icon. Only ever rendered by FeatureRow. */
+function Feature({ icon: Glyph, title, body }: { icon: Icon; title: string; body: string }) {
   return (
     <div className="bg-surface p-6">
       <Glyph size={22} strokeWidth={1.6} className="text-ink" />

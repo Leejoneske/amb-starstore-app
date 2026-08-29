@@ -79,19 +79,6 @@ export default function HomePage() {
             Read how it works
           </Button>
         </div>
-        <p className="mt-4 text-sm text-muted">
-          The application, your dashboard and your referral link all live inside the Mini App. If you
-          are reading this on a desktop without Telegram,{' '}
-          <a
-            href={LINKS.applyWeb}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline decoration-line underline-offset-4 hover:decoration-ink"
-          >
-            the same screen opens in a browser
-          </a>
-          .
-        </p>
       </header>
 
       <Section title="What this is, in plain terms">

@@ -1,5 +1,4 @@
 import type { Config } from 'tailwindcss';
-import typography from '@tailwindcss/typography';
 
 /**
  * Two families, both distinct from the app's own UI face on purpose: this is
@@ -36,7 +35,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [typography],
+  plugins: [],
 };
 
 export default config;

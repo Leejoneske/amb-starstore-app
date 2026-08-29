@@ -39,8 +39,14 @@ export const metadata: Metadata = {
     apple: '/favicon.png',
   },
   openGraph: { siteName: 'StarStore Ambassador Program', images: [OG_IMAGE] },
+  /*
+   * No default canonical here. Every real page sets its own through pageMeta,
+   * and a default meant the 404 inherited one pointing at the home page, which
+   * is a page telling a crawler both "do not index me" and "the canonical
+   * version of me is somewhere else". Those are contradictory signals on the
+   * one page that should carry neither.
+   */
   alternates: {
-    canonical: SITE,
     types: { 'application/atom+xml': '/feed.atom' },
   },
 };
