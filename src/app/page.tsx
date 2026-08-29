@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import { ArrowUpRight, BadgePercent, CalendarClock, Link2, ShieldCheck, Star, Wallet } from 'lucide-react';
+import { ArrowUpRight, BadgePercent, CalendarClock, Link2, Mail, ShieldCheck, Star, Wallet } from 'lucide-react';
 import { pageMeta, jsonLd, selfUrl } from '@/lib/seo';
-import { Button, FeatureRow, NextUp, Section, StatRow, Steps } from '@/components/ui';
-import { Newsletter } from '@/components/Newsletter';
+import { Button, Callout, FeatureRow, NextUp, Section, StarStore, StatRow, Steps } from '@/components/ui';
+import { Follow } from '@/components/Follow';
 import {
   ACTIVATION_STARS,
   COMMISSION_RATE,
@@ -12,13 +11,15 @@ import {
   LINKS,
   MIN_WITHDRAWAL_USD,
   RATES,
+  SELL_HOLD_DAYS,
 } from '@/lib/program';
 
 export const metadata: Metadata = pageMeta({
   path: '/',
   title: 'StarStore Ambassador Program',
   description:
-    'Earn 30% of the margin on every trade your referrals make on StarStore. Paid in USDT on TON at the start of each month, with a 0.50 USDT minimum.',
+    'The full guide to the StarStore Ambassador Program. Earn 30% of the margin on every trade your referrals make on StarStore, paid in USDT on TON at the start of each month.',
+  keywords: ['how to become a StarStore ambassador', 'StarStore referral link', 'Telegram Stars commission'],
 });
 
 const RATE = Math.round(COMMISSION_RATE * 100);
@@ -34,8 +35,18 @@ const PROGRAM_SCHEMA = {
     '@type': 'Service',
     name: 'StarStore Ambassador Program',
     serviceType: 'Referral programme',
-    provider: { '@type': 'Organization', name: 'StarStore', url: 'https://starstore.app' },
+    provider: {
+      '@type': 'Organization',
+      name: 'StarStore',
+      url: 'https://starstore.app',
+      description:
+        'A Telegram Mini App for buying, selling and trading Telegram Stars, and for buying Telegram Premium, settling in USDT on TON.',
+    },
     areaServed: 'Worldwide',
+    audience: {
+      '@type': 'Audience',
+      audienceType: 'Creators, community leaders and Telegram channel owners',
+    },
     offers: {
       '@type': 'Offer',
       price: '0',
@@ -56,19 +67,58 @@ export default function HomePage() {
           Share your link, and earn a share of every trade it brings in
         </h1>
         <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
-          This is the full guide to how the programme works. It is free to join, the rate is the same
-          for everybody, and payouts run on their own at the start of each month. Nothing on this
-          site is a projection. Every figure is what the platform actually pays.
+          This is the full guide to how the programme works. It is free to join, the rate is the
+          same for everybody, and payouts run on their own at the start of each month. Nothing here
+          is a projection. Every figure is what the platform actually pays.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Button href={LINKS.apply} external>
-            Apply to the programme
+            Apply in Telegram
           </Button>
           <Button href="/how-it-works/" variant="outline">
             Read how it works
           </Button>
         </div>
+        <p className="mt-4 text-sm text-muted">
+          The application, your dashboard and your referral link all live inside the Mini App. If you
+          are reading this on a desktop without Telegram,{' '}
+          <a
+            href={LINKS.applyWeb}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline decoration-line underline-offset-4 hover:decoration-ink"
+          >
+            the same screen opens in a browser
+          </a>
+          .
+        </p>
       </header>
+
+      <Section title="What this is, in plain terms">
+        <div className="max-w-prose space-y-4 leading-relaxed text-muted">
+          <p>
+            <StarStore /> is a Telegram Mini App where people buy and sell Telegram Stars, and buy
+            Telegram Premium. Stars are the currency Telegram uses inside its own apps, for tipping
+            creators, unlocking content and boosting channels. Selling them converts them to USDT on
+            the TON network, and buying them works the other way round.
+          </p>
+          <p>
+            An ambassador is somebody who brings other people to it. You get a referral link of your
+            own, you post it where your audience already is, and when somebody joins through it they
+            are attributed to you permanently. From then on you earn a share of what StarStore makes
+            on everything they trade.
+          </p>
+          <p>
+            That is the whole arrangement. There is nothing to buy, no stock to hold, no target to
+            hit before you are paid, and no cost to taking part. What it asks of you is honest
+            posting, which the{' '}
+            <a href="/policies/" className="underline decoration-line underline-offset-4 hover:decoration-ink">
+              policies page
+            </a>{' '}
+            sets out in full.
+          </p>
+        </div>
+      </Section>
 
       <Section title="The figures, up front">
         <StatRow
@@ -95,11 +145,18 @@ export default function HomePage() {
             },
           ]}
         />
+        <p className="mt-6 max-w-prose leading-relaxed text-muted">
+          A worked example, because percentages of a margin are hard to picture. Somebody you
+          referred sells 5,000 Stars and buys three months of Premium. The Stars earn you {RATES[0].amount}{' '}
+          per thousand, so $4.20, and the Premium earns you {RATES[1].amount}. The Premium part is
+          withdrawable immediately. The Stars part waits {SELL_HOLD_DAYS} days, because a sale can
+          still be reversed inside that window. Both are paid out on the 1st.
+        </p>
       </Section>
 
       <Section
         title="What you are actually agreeing to"
-        lede="Worth reading before you apply, because a few of these surprise people."
+        lede="Worth reading before you apply. A few of these surprise people, and all of them are easier to know now than to discover later."
       >
         <FeatureRow
           items={[
@@ -120,7 +177,7 @@ export default function HomePage() {
             },
             {
               icon: CalendarClock,
-              title: 'Sell commission waits 21 days',
+              title: `Sell commission waits ${SELL_HOLD_DAYS} days`,
               body: 'Telegram can reclaim sold Stars within that window, so commission on a sell order is held until it closes. Buying and Premium commission is available straight away.',
             },
             {
@@ -131,7 +188,7 @@ export default function HomePage() {
             {
               icon: ShieldCheck,
               title: 'Levels are recognition, not a better rate',
-              body: 'Every level earns the same 30%. What a level unlocks is free Stars and other non-cash benefits, awarded by our team rather than calculated by the platform.',
+              body: `Every level earns the same ${RATE}%. What a level unlocks is free Stars and other non-cash benefits, awarded by our team rather than calculated by the platform.`,
             },
           ]}
         />
@@ -145,27 +202,27 @@ export default function HomePage() {
           items={[
             {
               title: 'Apply',
-              body: 'Give us an email we can reach you on and a link to at least one place you post. We read every application and reply within 1 to 3 business days.',
+              body: 'Open the ambassador screen in the StarStore Mini App. It asks for an email we can reach you on and a link to at least one place you post. We read every application and reply within 1 to 3 business days.',
             },
             {
               title: 'Get your link',
-              body: 'Approval brings a referral link of your own, an ambassador ID, and the dashboard inside the StarStore app.',
+              body: 'Approval brings an email with a referral link of your own, an ambassador ID to quote if you ever contact us, and access to the dashboard inside the app.',
             },
             {
               title: 'Share it',
-              body: 'Post it where your audience already is. A channel, a group, a video description, a thread. It opens StarStore directly in Telegram.',
+              body: 'Post it where your audience already is. A channel, a group, a video description, a thread. It opens StarStore directly in Telegram, so nobody has to install anything.',
             },
             {
               title: 'They activate',
-              body: `Your commission starts once a referred person has traded ${ACTIVATION_STARS} Stars in total, or bought Telegram Premium.`,
+              body: `Your commission starts once a referred person has traded ${ACTIVATION_STARS} Stars in total, or bought Telegram Premium. Before that the referral shows as pending.`,
             },
             {
               title: 'Commission builds up',
-              body: `Every order they place after that adds to your balance, not just their first, up to $${LIFETIME_CAP_USD} from that one person.`,
+              body: `Every order they place after that adds to your balance, not just their first, up to $${LIFETIME_CAP_USD} from that one person. Then that referral is complete and the others carry on.`,
             },
             {
               title: 'You are paid',
-              body: 'On the 1st, in USDT on TON, to the wallet on your account. There is no withdrawal to request.',
+              body: 'On the 1st, in USDT on TON, to the wallet on your account. There is no withdrawal to request and no form to submit.',
             },
           ]}
         />
@@ -177,17 +234,28 @@ export default function HomePage() {
       >
         <div className="overflow-x-auto rounded-2xl border border-line">
           <table className="w-full min-w-[560px] border-collapse text-sm">
+            <caption className="sr-only">
+              StarStore ambassador levels, their monthly referral thresholds and their benefits
+            </caption>
             <thead>
               <tr className="border-b border-line text-left">
-                <th className="px-6 py-4 font-semibold">Level</th>
-                <th className="px-6 py-4 font-semibold">Referrals a month</th>
-                <th className="px-6 py-4 font-semibold">What it unlocks</th>
+                <th scope="col" className="px-6 py-4 font-semibold">
+                  Level
+                </th>
+                <th scope="col" className="px-6 py-4 font-semibold">
+                  Referrals a month
+                </th>
+                <th scope="col" className="px-6 py-4 font-semibold">
+                  What it unlocks
+                </th>
               </tr>
             </thead>
             <tbody>
               {LEVELS.map((level) => (
                 <tr key={level.key} className="border-b border-line-soft align-top last:border-0">
-                  <td className="px-6 py-4 font-display font-extrabold">{level.name}</td>
+                  <th scope="row" className="px-6 py-4 text-left font-display font-extrabold">
+                    {level.name}
+                  </th>
                   <td className="px-6 py-4 text-muted">
                     {level.referrals === 0 ? 'Where you start' : level.referrals}
                   </td>
@@ -204,43 +272,70 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <Section title="Longer writing, elsewhere">
-        <div className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2">
-          <a
-            href={LINKS.blog}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group bg-surface p-6 transition-colors hover:bg-line-soft"
-          >
-            <p className="flex items-center gap-1.5 font-display text-base font-extrabold tracking-tight">
-              blog.starstore.app
-              <ArrowUpRight size={15} strokeWidth={2.4} className="text-muted" />
-            </p>
-            <p className="mt-2 text-sm leading-relaxed text-muted">
-              The StarStore blog. How the Stars market moves, what changes in the programme, and what
-              is shipping in the app. This site stays the reference; the blog is where things get
-              explained at length.
-            </p>
-          </a>
-          <a
-            href={LINKS.app}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group bg-surface p-6 transition-colors hover:bg-line-soft"
-          >
-            <p className="flex items-center gap-1.5 font-display text-base font-extrabold tracking-tight">
-              starstore.app
-              <ArrowUpRight size={15} strokeWidth={2.4} className="text-muted" />
-            </p>
-            <p className="mt-2 text-sm leading-relaxed text-muted">
-              The app itself, where people buy and sell Stars and where your ambassador dashboard
-              lives. Your balance, your referrals and your payout history are all in there.
-            </p>
-          </a>
+      <Section title="Where your own figures are confirmed">
+        <div className="max-w-prose">
+          <Callout title="The approval email is the record">
+            When an application is approved, <StarStore /> emails you the rates in writing: the{' '}
+            {RATE}% share, what it works out to per 1,000 Stars and per Premium subscription, the $
+            {LIFETIME_CAP_USD} lifetime cap, the {SELL_HOLD_DAYS} day hold on sell commission, and
+            the {MIN_WITHDRAWAL_USD.toFixed(2)} USDT minimum. That email also carries your referral
+            link and your ambassador ID. Keep it. Every number on this site is the same number that
+            email sends, and if the two ever disagree, tell us and we will fix whichever one is
+            wrong.
+          </Callout>
+          <p className="mt-6 flex items-start gap-2.5 text-sm leading-relaxed text-muted">
+            <Mail size={17} strokeWidth={1.7} className="mt-0.5 shrink-0" />
+            <span>
+              Lost it? Write to{' '}
+              <a
+                href={LINKS.support}
+                className="underline decoration-line underline-offset-4 hover:decoration-ink"
+              >
+                {LINKS.supportAddress}
+              </a>{' '}
+              from the address on your account and we will send it again.
+            </span>
+          </p>
         </div>
       </Section>
 
-      <Newsletter />
+      <Section title="Where else to look">
+        <div className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-3">
+          {[
+            {
+              href: LINKS.bot,
+              label: 'The StarStore Mini App',
+              body: 'Where you apply, where your dashboard lives, and where you set the wallet a payout is sent to. Most of what an ambassador does happens in here.',
+            },
+            {
+              href: LINKS.blog,
+              label: 'blog.starstore.app',
+              body: 'The StarStore blog. How the Stars market moves, what changes in the programme, and what is shipping in the app. This site stays the reference; the blog is where things get explained at length.',
+            },
+            {
+              href: LINKS.app,
+              label: 'starstore.app',
+              body: 'The same app in a browser, for buying and selling Stars outside Telegram, and for reading the policies that cover every customer rather than only ambassadors.',
+            },
+          ].map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group bg-surface p-6 transition-colors hover:bg-line-soft"
+            >
+              <p className="flex items-center gap-1.5 font-display text-base font-extrabold tracking-tight">
+                {item.label}
+                <ArrowUpRight size={15} strokeWidth={2.4} className="text-muted" />
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-muted">{item.body}</p>
+            </a>
+          ))}
+        </div>
+      </Section>
+
+      <Follow />
 
       <NextUp
         links={[

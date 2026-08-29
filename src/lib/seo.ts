@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { SITE } from './program';
+import { KEYWORDS, SITE } from './program';
 
 export { SITE };
 
@@ -19,6 +19,8 @@ interface PageMetaInput {
   path: string;
   title: string;
   description: string;
+  /** Terms specific to this page, added to the site-wide set. */
+  keywords?: string[];
 }
 
 /**
@@ -37,13 +39,14 @@ function fullTitle(title: string, path: string): string {
   return path === '/' ? title : `${title} | StarStore Ambassador Program`;
 }
 
-export function pageMeta({ path, title, description }: PageMetaInput): Metadata {
+export function pageMeta({ path, title, description, keywords = [] }: PageMetaInput): Metadata {
   const canonical = selfUrl(path);
   const rendered = fullTitle(title, path);
 
   return {
     title: rendered,
     description,
+    keywords: [...KEYWORDS, ...keywords],
     alternates: { canonical },
     robots: {
       index: true,

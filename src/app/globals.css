@@ -117,13 +117,13 @@
     @apply mx-auto w-full max-w-shell px-5 sm:px-8 lg:px-12;
   }
 
-  /* The eyebrow that sits above a section heading, with the clay mark. */
+  /*
+   * The label above a heading. Type alone: no dot, square, bullet or bar in
+   * front of it. A mark there is decoration standing in for hierarchy that
+   * the size, weight and letter-spacing already carry, and it reads as
+   * ornament on a page whose job is to be read.
+   */
   .eyebrow {
-    @apply flex items-center gap-2.5 text-xs font-bold uppercase tracking-[0.16em] text-muted;
-  }
-
-  .eyebrow::before {
-    content: '';
-    @apply block h-2 w-2 bg-clay;
+    @apply text-xs font-bold uppercase tracking-[0.16em] text-muted;
   }
 }

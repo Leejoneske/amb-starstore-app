@@ -24,10 +24,12 @@ const COLUMNS = [
 ];
 
 const OUTBOUND = [
-  { href: LINKS.app, label: 'starstore.app', note: 'The app itself' },
-  { href: LINKS.blog, label: 'blog.starstore.app', note: 'Longer writing' },
-  { href: LINKS.bot, label: 'The Telegram bot', note: 'Where you apply' },
-  { href: LINKS.support, label: LINKS.supportAddress, note: 'A person reads it' },
+  { href: LINKS.bot, label: 'The StarStore Mini App' },
+  { href: LINKS.channel, label: 'Announcements channel' },
+  { href: LINKS.chat, label: 'Community chat' },
+  { href: LINKS.blog, label: 'blog.starstore.app' },
+  { href: LINKS.app, label: 'starstore.app' },
+  { href: LINKS.support, label: LINKS.supportAddress },
 ];
 
 export function Footer() {

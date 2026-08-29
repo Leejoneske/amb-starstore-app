@@ -65,6 +65,13 @@ from:
 | Payout on the 1st, 0.50 USDT minimum | `services/ambassador-payouts/` |
 | Level thresholds and benefits | `services/email-service.js`, the approval email |
 
+The approval email is the one to check first. `sendAmbassadorApproved` in
+`services/email-service.js` is what an ambassador is actually sent when they
+are accepted, so it is the version they have already read, and a figure on
+this site that disagrees with it is wrong by definition. It confirms the 30%
+share, the per 1,000 Stars and per Premium figures, the $50 lifetime cap, the
+21 day hold and the 0.50 USDT minimum.
+
 When one changes there, change it here and nowhere else.
 
 One trap for anyone reading the StarStore source alongside this:
@@ -80,6 +87,10 @@ not be published here.
 - Say "we", never "the admin" or "the team will". Which internal role acted is
   not information an ambassador can use.
 - A figure about money belongs in `lib/program.ts`, not in a sentence.
+- No decorative marks before a label. No dot, square, bullet, dash or coloured
+  bar in front of an eyebrow, a heading or a list item. Hierarchy comes from
+  size, weight and spacing, which the page already has. A mark in front of text
+  is ornament, and this site is meant to be read rather than looked at.
 - Write like a person explaining the thing, not like a landing page selling it.
   This site is the reference an ambassador comes back to, so a sentence earns
   its place by being informative rather than persuasive.
@@ -103,12 +114,36 @@ The work here has no visual output, which is what makes it worth doing:
 
 ## Backend
 
-Supabase, unchanged by the rewrite.
+One thing, now: the **contact form**, which posts to the `send-contact-email`
+Supabase edge function and relays through Resend. Its source is in
+`supabase/functions/`.
 
-- **Newsletter**: `check_newsletter_email` RPC for the duplicate check, since
-  the table has no public read, then an insert into `newsletter_subscribers`.
-- **Contact**: the `send-contact-email` edge function, which relays through
-  Resend. Its source is in `supabase/functions/`.
+The email newsletter is gone. It wrote to a `newsletter_subscribers` table
+behind a `check_newsletter_email` RPC, and it was asking twice for something we
+could already reach people at: everybody this site is for is in Telegram, the
+announcements are posted there first, and the app itself checks membership of
+the channel. `components/Follow.tsx` links `@StarStore_app` and
+`@StarStore_Chat` instead. The Supabase table and RPC are untouched, so old
+subscribers are still there if you ever want them.
+
+## Links out
+
+`lib/program.ts` holds every destination, and two of them are worth explaining.
+
+`LINKS.apply` is a Telegram deep link, `t.me/TgStarStore_bot?startapp=ambassador`,
+not the web address of the same screen. The application, the dashboard, the
+wallet field and the referral link all live inside the Mini App, so sending
+somebody to a browser means sending them somewhere they have to leave again.
+
+One caveat before you change it: the app does **not** read `start_param` yet
+(it is declared in `app-web/src/lib/telegram.ts` and nothing consumes it), so
+the link currently opens the Mini App on its home screen and the reader taps
+through to Earn. The payload is there so that the day StarStore reads it, this
+link starts landing on the right screen with no change on this side.
+`LINKS.applyWeb` is the browser version, for a desktop without Telegram.
+
+The channel and chat handles come from the app's own `lib/links.ts`, where
+`CHANNEL` and `SUPPORT_CHAT` are named.
 
 The URL and publishable key have deployed fallbacks in `lib/supabase.ts` so the
 site boots without environment variables. Both are public values; what protects

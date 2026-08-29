@@ -109,14 +109,55 @@ export const LEVELS: Level[] = [
 ];
 
 /** Where somebody applies. Both are the same application. */
+/**
+ * Where a link goes, and why it goes there.
+ *
+ * `apply` is a Telegram deep link rather than the web address of the same
+ * screen, because the application, the dashboard, the wallet field and the
+ * referral link all live inside the Mini App. Sending somebody to a browser
+ * means sending them somewhere they have to leave again.
+ *
+ * One caveat worth knowing before you change it: `startapp=ambassador` opens
+ * the Mini App, but the app does not read `start_param` yet, so it currently
+ * lands on the home screen and the reader taps through to Earn. The payload is
+ * here so that the moment StarStore reads it, this link starts landing on the
+ * right screen with no change on this side. `applyWeb` is the same screen in a
+ * browser, for anyone opening the guide on a desktop without Telegram.
+ */
 export const LINKS = {
-  apply: 'https://starstore.app/ambassador/',
+  apply: 'https://t.me/TgStarStore_bot?startapp=ambassador',
+  applyWeb: 'https://starstore.app/ambassador/',
   bot: 'https://t.me/TgStarStore_bot',
+  /* Announcements, and the community around them. Both from the app's own
+     lib/links.ts, where CHANNEL and SUPPORT_CHAT are named. */
+  channel: 'https://t.me/StarStore_app',
+  chat: 'https://t.me/StarStore_Chat',
   app: 'https://starstore.app/',
   /* The longer writing lives on its own property, deliberately. */
   blog: 'https://blog.starstore.app/',
   support: 'mailto:support@starstore.app',
   supportAddress: 'support@starstore.app',
 } as const;
+
+/**
+ * Search terms this guide should answer, used in page metadata.
+ *
+ * Not a keyword-stuffing exercise: each of these is a question one of these
+ * pages genuinely answers, which is the only reason a search engine should
+ * send anybody here for it.
+ */
+export const KEYWORDS = [
+  'StarStore',
+  'StarStore ambassador',
+  'StarStore Ambassador Program',
+  'Telegram Stars affiliate',
+  'Telegram Stars referral programme',
+  'sell Telegram Stars',
+  'buy Telegram Stars',
+  'Telegram Premium referral',
+  'earn USDT on TON',
+  'Telegram Mini App referral programme',
+  'TgStarStore_bot',
+];
 
 export const SITE = 'https://amb.starstore.app';

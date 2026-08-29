@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { ComponentType, ReactNode } from 'react';
 import { ArrowUpRight } from 'lucide-react';
+import { LINKS } from '@/lib/program';
 
 /**
  * The site's whole component vocabulary. Small on purpose: the version this
@@ -9,6 +10,27 @@ import { ArrowUpRight } from 'lucide-react';
 
 /** Icons come from lucide-react, the set the site already depended on. */
 export type Icon = ComponentType<{ size?: number | string; strokeWidth?: number; className?: string }>;
+
+/**
+ * The product name, in running text, linked to the Mini App.
+ *
+ * Used at the first mention in a section rather than at every occurrence. A
+ * paragraph where the same word is a link four times is harder to read than
+ * one where it is a link once, and a search engine reads repeated identical
+ * anchors as noise rather than as emphasis.
+ */
+export function StarStore({ children = 'StarStore' }: { children?: ReactNode }) {
+  return (
+    <a
+      href={LINKS.bot}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="underline decoration-line underline-offset-4 transition-colors hover:decoration-ink"
+    >
+      {children}
+    </a>
+  );
+}
 
 export function PageHeader({
   eyebrow,

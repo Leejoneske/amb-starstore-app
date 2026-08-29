@@ -66,7 +66,9 @@ const ORGANISATION = {
   url: 'https://starstore.app',
   logo: `${SITE}/favicon.png`,
   email: LINKS.supportAddress,
-  sameAs: [LINKS.bot, 'https://starstore.app'],
+  sameAs: [LINKS.bot, LINKS.channel, LINKS.chat, LINKS.blog, LINKS.app],
+  description:
+    'A Telegram Mini App for buying, selling and trading Telegram Stars, and for buying Telegram Premium, settling in USDT on the TON network.',
 };
 
 const WEBSITE = {

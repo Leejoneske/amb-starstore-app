@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { pageMeta, jsonLd, breadcrumbs } from '@/lib/seo';
-import { Button, Card, NextUp, PageHeader, Section, Steps, Term } from '@/components/ui';
+import { Button, Card, NextUp, PageHeader, Section, StarStore, Steps, Term } from '@/components/ui';
 import { LINKS } from '@/lib/program';
 
 export const metadata: Metadata = pageMeta({
@@ -32,25 +32,29 @@ export default function ApplyPage() {
       <Section>
         <div className="grid gap-4 sm:grid-cols-2">
           <Card>
-            <p className="font-display text-lg tracking-tight">In the StarStore app</p>
+            <p className="font-display text-lg font-extrabold tracking-tight">In Telegram</p>
             <p className="mt-3 text-sm leading-relaxed text-muted">
-              Open the ambassador screen. It explains the programme and carries the form at the
-              bottom.
+              This is the one to use. It opens the <StarStore>StarStore</StarStore> Mini App, where
+              the ambassador screen explains the programme and carries the form at the bottom. Your
+              dashboard, your referral link and the wallet a payout goes to all live in the same
+              place afterwards, so there is nothing to leave and come back to.
             </p>
             <div className="mt-6">
               <Button href={LINKS.apply} external>
-                Open the application
+                Apply in Telegram
               </Button>
             </div>
           </Card>
           <Card>
-            <p className="font-display text-lg tracking-tight">In the Telegram bot</p>
+            <p className="font-display text-lg font-extrabold tracking-tight">In a browser</p>
             <p className="mt-3 text-sm leading-relaxed text-muted">
-              The same form, reached through the bot. Either route creates the same application.
+              The same screen on the web, for reading this on a desktop without Telegram to hand. It
+              creates the same application, though you will need Telegram eventually: that is where
+              the dashboard and the referral link live.
             </p>
             <div className="mt-6">
-              <Button href={LINKS.bot} variant="outline" external>
-                Open the bot
+              <Button href={LINKS.applyWeb} variant="outline" external>
+                Open in a browser
               </Button>
             </div>
           </Card>
