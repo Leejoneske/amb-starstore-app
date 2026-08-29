@@ -41,7 +41,7 @@ export default function ContactPage() {
               </p>
               <a
                 href={LINKS.support}
-                className="mt-3 block text-accent underline underline-offset-4"
+                className="mt-3 block font-medium underline underline-offset-4 hover:text-muted"
               >
                 {LINKS.supportAddress}
               </a>
@@ -54,7 +54,7 @@ export default function ContactPage() {
                 href={LINKS.bot}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 block text-accent underline underline-offset-4"
+                className="mt-3 block font-medium underline underline-offset-4 hover:text-muted"
               >
                 The StarStore bot
               </a>

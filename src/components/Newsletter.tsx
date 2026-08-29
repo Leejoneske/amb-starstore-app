@@ -60,7 +60,7 @@ export function Newsletter() {
           </p>
 
           {state === 'done' ? (
-            <p className="mt-8 rounded-xl border border-clay/60 bg-clay/10 px-5 py-4 text-sm">
+            <p className="mt-8 rounded-xl border border-line bg-surface px-5 py-4 text-sm shadow-[inset_3px_0_0_0_rgb(var(--clay))]">
               You are subscribed. Check your inbox.
             </p>
           ) : (
@@ -80,12 +80,12 @@ export function Newsletter() {
                   setError('');
                 }}
                 disabled={state === 'sending'}
-                className="h-12 flex-1 rounded-full border border-line bg-paper px-5 text-sm outline-none transition-colors placeholder:text-muted focus:border-accent disabled:opacity-60"
+                className="h-12 flex-1 rounded-full border border-line bg-paper px-5 text-sm outline-none transition-colors placeholder:text-muted focus:border-ink disabled:opacity-60"
               />
               <button
                 type="submit"
                 disabled={state === 'sending'}
-                className="h-12 rounded-full bg-ink px-7 text-sm font-semibold text-paper transition-colors hover:bg-ink/85 disabled:opacity-60"
+                className="h-12 rounded-pill bg-accent px-7 text-[15px] font-bold tracking-[-0.2px] text-on-accent transition-opacity hover:opacity-90 disabled:opacity-40"
               >
                 {state === 'sending' ? 'Subscribing' : 'Subscribe'}
               </button>
@@ -93,7 +93,7 @@ export function Newsletter() {
           )}
 
           {error ? (
-            <p role="alert" className="mt-3 text-sm text-accent">
+            <p role="alert" className="mt-3 text-sm font-medium text-ink">
               {error}
             </p>
           ) : null}

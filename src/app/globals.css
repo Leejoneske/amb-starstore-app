@@ -3,47 +3,63 @@
 @tailwind utilities;
 
 /*
- * Two themes, defined the same way round: the light palette is the base and
- * dark redefines only the tokens. A colour whose only definition lives inside
- * a dark block is a colour that disappears in light mode.
+ * The palette is the StarStore app's own, read from app-web/src/app/globals.css
+ * rather than picked to match it.
+ *
+ * The one that matters is the action colour. Button.module.css in the app says
+ * it plainly: ink is the action colour, and there is no second accent. So every
+ * button here is black on white and flips to light on dark, exactly as the app
+ * does, and clay is the mark beside a heading rather than a thing to press.
+ *
+ * The ground is pure white. The warm off-white this used to carry made the
+ * pages look tinted next to the app, which is white.
  */
 :root {
   --ink: 11 10 9;
-  --paper: 250 247 244;
+  --paper: 255 255 255;
+  --surface: 255 255 255;
+  --muted: 111 106 100;
+  --line: 232 229 225;
+  --line-soft: 242 240 237;
   --clay: 220 195 173;
   --gold: 245 179 1;
 
-  --surface: 255 253 251;
-  --line: 226 217 208;
-  --muted: 110 102 95;
-  --accent: 141 106 74;
+  /* The app's --accent / --on-accent pair. */
+  --accent: 11 10 9;
+  --on-accent: 255 255 255;
 
   color-scheme: light;
 }
 
 :root[data-theme='dark'] {
-  --ink: 250 247 244;
-  --paper: 11 10 9;
+  --ink: 244 240 234;
+  --paper: 18 17 16;
+  --surface: 28 26 24;
+  --muted: 176 168 158;
+  --line: 44 41 38;
+  --line-soft: 32 30 28;
   --clay: 220 195 173;
+  --gold: 245 179 1;
 
-  --surface: 22 20 18;
-  --line: 44 40 36;
-  --muted: 154 145 136;
-  --accent: 220 195 173;
+  --accent: 244 240 234;
+  --on-accent: 18 17 16;
 
   color-scheme: dark;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
-    --ink: 250 247 244;
-    --paper: 11 10 9;
+    --ink: 244 240 234;
+    --paper: 18 17 16;
+    --surface: 28 26 24;
+    --muted: 176 168 158;
+    --line: 44 41 38;
+    --line-soft: 32 30 28;
     --clay: 220 195 173;
+    --gold: 245 179 1;
 
-    --surface: 22 20 18;
-    --line: 44 40 36;
-    --muted: 154 145 136;
-    --accent: 220 195 173;
+    --accent: 244 240 234;
+    --on-accent: 18 17 16;
 
     color-scheme: dark;
   }
@@ -82,19 +98,24 @@
   }
 
   :focus-visible {
-    outline: 2px solid rgb(var(--accent));
+    outline: 2px solid rgb(var(--ink));
     outline-offset: 3px;
     border-radius: 4px;
   }
 }
 
 @layer components {
-  /* The page's own reading column, used by every long-form section. */
   .shell {
-    @apply mx-auto w-full max-w-shell px-5 sm:px-8;
+    @apply mx-auto w-full max-w-shell px-5 sm:px-8 lg:px-12;
   }
 
-  .rule {
-    @apply h-px w-full bg-line;
+  /* The eyebrow that sits above a section heading, with the clay mark. */
+  .eyebrow {
+    @apply flex items-center gap-2.5 text-xs font-bold uppercase tracking-[0.16em] text-muted;
+  }
+
+  .eyebrow::before {
+    content: '';
+    @apply block h-2 w-2 bg-clay;
   }
 }

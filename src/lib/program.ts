@@ -113,6 +113,8 @@ export const LINKS = {
   apply: 'https://starstore.app/ambassador/',
   bot: 'https://t.me/TgStarStore_bot',
   app: 'https://starstore.app/',
+  /* The longer writing lives on its own property, deliberately. */
+  blog: 'https://blog.starstore.app/',
   support: 'mailto:support@starstore.app',
   supportAddress: 'support@starstore.app',
 } as const;

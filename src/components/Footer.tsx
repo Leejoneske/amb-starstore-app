@@ -23,44 +23,31 @@ const COLUMNS = [
   },
 ];
 
+const OUTBOUND = [
+  { href: LINKS.app, label: 'starstore.app', note: 'The app itself' },
+  { href: LINKS.blog, label: 'blog.starstore.app', note: 'Longer writing' },
+  { href: LINKS.bot, label: 'The Telegram bot', note: 'Where you apply' },
+  { href: LINKS.support, label: LINKS.supportAddress, note: 'A person reads it' },
+];
+
 export function Footer() {
   return (
-    <footer className="mt-8 border-t border-line bg-surface">
-      <div className="shell grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="lg:col-span-2">
-          <Link href="/" className="flex items-center gap-2.5 font-medium">
-            <Image src="/favicon.png" alt="" width={28} height={28} className="rounded-lg" />
-            StarStore Ambassadors
+    <footer className="mt-4 border-t border-line">
+      <div className="shell grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="lg:col-span-1">
+          <Link href="/" className="flex items-center gap-2.5">
+            <Image src="/favicon.png" alt="" width={26} height={26} className="rounded-lg" />
+            <span className="font-display text-[15px] font-extrabold tracking-tight">StarStore</span>
           </Link>
-          <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
-            Earn a share of every trade your referrals make on StarStore, paid in USDT on TON at the
-            start of each month.
+          <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted">
+            The ambassador programme, written out in full. Every figure here is the one the platform
+            pays.
           </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <a
-              href={LINKS.apply}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full bg-ink px-5 py-2 text-sm font-semibold text-paper transition-colors hover:bg-ink/85"
-            >
-              Apply
-            </a>
-            <a
-              href={LINKS.bot}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full border border-line px-5 py-2 text-sm font-semibold transition-colors hover:border-accent hover:text-accent"
-            >
-              Open the bot
-            </a>
-          </div>
         </div>
 
         {COLUMNS.map((column) => (
           <nav key={column.title} aria-label={column.title}>
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
-              {column.title}
-            </p>
+            <p className="text-xs font-bold uppercase tracking-[0.14em] text-muted">{column.title}</p>
             <ul className="mt-4 space-y-2.5 text-sm">
               {column.links.map((link) => (
                 <li key={link.href}>
@@ -72,18 +59,28 @@ export function Footer() {
             </ul>
           </nav>
         ))}
+
+        <nav aria-label="Elsewhere">
+          <p className="text-xs font-bold uppercase tracking-[0.14em] text-muted">Elsewhere</p>
+          <ul className="mt-4 space-y-2.5 text-sm">
+            {OUTBOUND.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  target={link.href.startsWith('mailto:') ? undefined : '_blank'}
+                  rel="noopener noreferrer"
+                  className="text-muted transition-colors hover:text-ink"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
 
-      <div className="shell flex flex-col gap-3 border-t border-line py-6 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
-        <p>StarStore Ambassador Program</p>
-        <div className="flex flex-wrap gap-5">
-          <a href={LINKS.app} className="transition-colors hover:text-ink">
-            starstore.app
-          </a>
-          <a href={LINKS.support} className="transition-colors hover:text-ink">
-            {LINKS.supportAddress}
-          </a>
-        </div>
+      <div className="shell border-t border-line-soft py-6 text-sm text-muted">
+        StarStore Ambassador Program
       </div>
     </footer>
   );

@@ -1,13 +1,14 @@
 import Link from 'next/link';
-import type { ReactNode } from 'react';
+import type { ComponentType, ReactNode } from 'react';
+import { ArrowUpRight } from 'lucide-react';
 
 /**
- * The site's whole component vocabulary.
- *
- * Small on purpose. The site this replaced carried forty-odd generated
- * primitives and used six of them, which made every page look like a
- * different product.
+ * The site's whole component vocabulary. Small on purpose: the version this
+ * replaced carried forty generated primitives and used six of them.
  */
+
+/** Icons come from lucide-react, the set the site already depended on. */
+export type Icon = ComponentType<{ size?: number | string; strokeWidth?: number; className?: string }>;
 
 export function PageHeader({
   eyebrow,
@@ -19,12 +20,12 @@ export function PageHeader({
   lede: string;
 }) {
   return (
-    <header className="shell pb-2 pt-16 sm:pb-4 sm:pt-24">
-      <p className="mb-5 text-xs font-semibold uppercase tracking-[0.18em] text-accent">{eyebrow}</p>
-      <h1 className="max-w-3xl font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl md:text-6xl">
+    <header className="shell border-b border-line pb-10 pt-14 sm:pb-14 sm:pt-20">
+      <p className="eyebrow mb-5">{eyebrow}</p>
+      <h1 className="max-w-3xl font-display text-3xl font-extrabold leading-[1.08] tracking-tight sm:text-4xl md:text-5xl">
         {title}
       </h1>
-      <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">{lede}</p>
+      <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">{lede}</p>
     </header>
   );
 }
@@ -32,8 +33,8 @@ export function PageHeader({
 export function Section({
   title,
   id,
-  children,
   lede,
+  children,
 }: {
   title?: string;
   id?: string;
@@ -41,101 +42,143 @@ export function Section({
   children: ReactNode;
 }) {
   return (
-    <section id={id} className="shell scroll-mt-24 py-12 sm:py-16">
+    <section id={id} className="shell scroll-mt-24 py-12 sm:py-14">
       {title ? (
-        <h2 className="font-display text-2xl tracking-tight sm:text-3xl">{title}</h2>
+        <h2 className="font-display text-xl font-extrabold tracking-tight sm:text-2xl">{title}</h2>
       ) : null}
-      {lede ? <p className="mt-4 max-w-prose text-muted">{lede}</p> : null}
-      <div className={title ? 'mt-8' : undefined}>{children}</div>
+      {lede ? <p className="mt-3 max-w-prose leading-relaxed text-muted">{lede}</p> : null}
+      <div className={title ? 'mt-7' : undefined}>{children}</div>
     </section>
-  );
-}
-
-/** Body copy at a readable measure. */
-export function Prose({ children }: { children: ReactNode }) {
-  return (
-    <div className="prose max-w-prose prose-headings:font-display prose-headings:tracking-tight prose-p:text-muted prose-p:leading-relaxed prose-li:text-muted prose-strong:text-ink prose-a:text-accent prose-a:underline-offset-4">
-      {children}
-    </div>
   );
 }
 
 export function Card({ children, className = '' }: { children: ReactNode; className?: string }) {
   return (
-    <div className={`rounded-2xl border border-line bg-surface p-6 sm:p-7 ${className}`}>
-      {children}
-    </div>
+    <div className={`rounded-2xl border border-line bg-surface p-6 ${className}`}>{children}</div>
   );
 }
 
-/** A headline number, for the figures a reader came to find. */
-export function Stat({ value, label, note }: { value: string; label: string; note?: string }) {
+/** A headline figure, for the numbers somebody came to find. */
+export function Stat({
+  value,
+  label,
+  note,
+}: {
+  value: string;
+  label: string;
+  note?: string;
+}) {
   return (
-    <div className="rounded-2xl border border-line bg-surface p-6">
-      <p className="font-display text-3xl tracking-tight sm:text-4xl">{value}</p>
-      <p className="mt-2 text-sm font-medium">{label}</p>
-      {note ? <p className="mt-1 text-sm leading-relaxed text-muted">{note}</p> : null}
+    <div className="bg-surface p-6">
+      <p className="font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{value}</p>
+      <p className="mt-3 text-sm font-semibold">{label}</p>
+      {note ? <p className="mt-1.5 text-sm leading-relaxed text-muted">{note}</p> : null}
     </div>
   );
 }
 
-export function Callout({ title, children }: { title: string; children: ReactNode }) {
+/** A row of figures, hairline separated, on one card. */
+export function StatRow({ items }: { items: { value: string; label: string; note?: string }[] }) {
   return (
-    <div className="rounded-2xl border border-clay/60 bg-clay/10 p-6">
-      <p className="font-display text-lg tracking-tight">{title}</p>
-      <div className="mt-2 text-sm leading-relaxed text-muted">{children}</div>
+    <div className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+      {items.map((item) => (
+        <Stat key={item.label} {...item} />
+      ))}
     </div>
   );
 }
 
+/**
+ * The action colour is ink, taken from the StarStore app. It has no second
+ * accent, so a secondary action is an outline rather than another fill.
+ */
 export function Button({
   href,
   children,
-  variant = 'solid',
+  variant = 'primary',
   external = false,
 }: {
   href: string;
   children: ReactNode;
-  variant?: 'solid' | 'outline';
+  variant?: 'primary' | 'outline';
   external?: boolean;
 }) {
   const base =
-    'inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-colors';
+    'inline-flex h-12 items-center justify-center gap-2 rounded-pill px-6 text-[15px] font-bold tracking-[-0.2px] transition-opacity';
   const styles =
-    variant === 'solid'
-      ? 'bg-ink text-paper hover:bg-ink/85'
-      : 'border border-line text-ink hover:border-accent hover:text-accent';
+    variant === 'primary'
+      ? 'bg-accent text-on-accent hover:opacity-90'
+      : 'border border-line text-ink hover:border-ink';
+
+  const body = (
+    <>
+      {children}
+      {external ? <ArrowUpRight size={16} strokeWidth={2.4} /> : null}
+    </>
+  );
 
   if (external) {
     return (
       <a href={href} target="_blank" rel="noopener noreferrer" className={`${base} ${styles}`}>
-        {children}
+        {body}
       </a>
     );
   }
   return (
     <Link href={href} className={`${base} ${styles}`}>
-      {children}
+      {body}
     </Link>
+  );
+}
+
+/**
+ * A note that matters more than the paragraph around it. Clay rather than a
+ * fill you could mistake for a button: ink is the only thing here you press.
+ */
+export function Callout({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <div className="rounded-2xl border border-line bg-surface p-6 shadow-[inset_3px_0_0_0_rgb(var(--clay))]">
+      <p className="font-display text-base font-extrabold tracking-tight">{title}</p>
+      <div className="mt-2 text-sm leading-relaxed text-muted">{children}</div>
+    </div>
   );
 }
 
 /** A numbered walkthrough. */
 export function Steps({ items }: { items: { title: string; body: string }[] }) {
   return (
-    <ol className="space-y-px overflow-hidden rounded-2xl border border-line bg-line">
+    <ol className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-2 lg:grid-cols-3">
       {items.map((item, index) => (
-        <li key={item.title} className="flex gap-5 bg-surface p-6 sm:gap-7 sm:p-7">
-          <span className="font-display text-2xl leading-none text-clay" aria-hidden>
+        <li key={item.title} className="bg-surface p-6">
+          <span className="font-display text-xs font-extrabold tracking-[0.1em] text-muted">
             {String(index + 1).padStart(2, '0')}
           </span>
-          <div>
-            <p className="font-medium">{item.title}</p>
-            <p className="mt-2 text-sm leading-relaxed text-muted">{item.body}</p>
-          </div>
+          <p className="mt-3 font-display text-lg font-extrabold tracking-tight">{item.title}</p>
+          <p className="mt-2 text-sm leading-relaxed text-muted">{item.body}</p>
         </li>
       ))}
     </ol>
+  );
+}
+
+/** A short feature, with its icon. */
+export function Feature({ icon: Glyph, title, body }: { icon: Icon; title: string; body: string }) {
+  return (
+    <div className="bg-surface p-6">
+      <Glyph size={22} strokeWidth={1.6} className="text-ink" />
+      <p className="mt-4 font-display text-base font-extrabold tracking-tight">{title}</p>
+      <p className="mt-2 text-sm leading-relaxed text-muted">{body}</p>
+    </div>
+  );
+}
+
+export function FeatureRow({ items }: { items: { icon: Icon; title: string; body: string }[] }) {
+  return (
+    <div className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+      {items.map((item) => (
+        <Feature key={item.title} {...item} />
+      ))}
+    </div>
   );
 }
 
@@ -143,7 +186,7 @@ export function Steps({ items }: { items: { title: string; body: string }[] }) {
  * A question and its answer, open in the markup.
  *
  * `<details>` rather than a JavaScript accordion, so the answer is in the HTML
- * a crawler receives and is findable by the browser's own page search.
+ * a crawler receives and the browser's own page search can find it.
  */
 export function Question({ q, a }: { q: string; a: ReactNode }) {
   return (
@@ -162,11 +205,11 @@ export function Question({ q, a }: { q: string; a: ReactNode }) {
   );
 }
 
-/** A definition row, for policy pages. */
+/** A definition row. Most of the reference pages are made of these. */
 export function Term({ term, children }: { term: string; children: ReactNode }) {
   return (
-    <div className="border-t border-line py-5 first:border-t-0 first:pt-0">
-      <p className="font-medium">{term}</p>
+    <div className="border-t border-line py-5 last:border-b">
+      <p className="font-display text-base font-extrabold tracking-tight">{term}</p>
       <div className="mt-2 max-w-prose text-sm leading-relaxed text-muted">{children}</div>
     </div>
   );
@@ -175,17 +218,24 @@ export function Term({ term, children }: { term: string; children: ReactNode }) 
 /** Where a page sends the reader next. */
 export function NextUp({ links }: { links: { href: string; title: string; body: string }[] }) {
   return (
-    <section className="shell py-12 sm:py-16">
-      <div className="rule mb-10" />
-      <h2 className="font-display text-2xl tracking-tight">Keep reading</h2>
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <section className="shell py-12 sm:py-14">
+      <div className="mb-8 h-px w-full bg-line" />
+      <h2 className="font-display text-xl font-extrabold tracking-tight">Keep reading</h2>
+      <div className="mt-6 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
         {links.map((link) => (
           <Link
             key={link.href}
             href={link.href}
-            className="group rounded-2xl border border-line bg-surface p-6 transition-colors hover:border-accent"
+            className="group bg-surface p-6 transition-colors hover:bg-line-soft"
           >
-            <p className="font-medium group-hover:text-accent">{link.title}</p>
+            <p className="flex items-center gap-1.5 font-display text-base font-extrabold tracking-tight">
+              {link.title}
+              <ArrowUpRight
+                size={15}
+                strokeWidth={2.4}
+                className="text-muted transition-transform group-hover:-translate-y-0.5"
+              />
+            </p>
             <p className="mt-2 text-sm leading-relaxed text-muted">{link.body}</p>
           </Link>
         ))}

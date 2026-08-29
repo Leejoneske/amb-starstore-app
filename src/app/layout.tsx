@@ -1,19 +1,24 @@
 import type { Metadata, Viewport } from 'next';
-import { Fraunces, Inter } from 'next/font/google';
+import { Archivo, Public_Sans } from 'next/font/google';
 import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
 import { SITE, jsonLd, OG_IMAGE } from '@/lib/seo';
 import { LINKS } from '@/lib/program';
 import './globals.css';
 
-const display = Fraunces({
+/*
+ * A grotesque for headings and a plain workhorse for reading. Neither is the
+ * app's own UI face, on purpose: this is a document to read rather than a
+ * screen to operate, and it should not pretend to be the product.
+ */
+const display = Archivo({
   subsets: ['latin'],
   variable: '--font-display',
   display: 'swap',
-  axes: ['SOFT', 'WONK', 'opsz'],
+  weight: ['600', '700', '800'],
 });
 
-const sans = Inter({
+const sans = Public_Sans({
   subsets: ['latin'],
   variable: '--font-sans',
   display: 'swap',
@@ -42,8 +47,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#FAF7F4' },
-    { media: '(prefers-color-scheme: dark)', color: '#0B0A09' },
+    { media: '(prefers-color-scheme: light)', color: '#FFFFFF' },
+    { media: '(prefers-color-scheme: dark)', color: '#121110' },
   ],
 };
 
@@ -84,7 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-ink focus:px-5 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-paper"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-pill focus:bg-accent focus:px-5 focus:py-2.5 focus:text-sm focus:font-bold focus:text-on-accent"
         >
           Skip to content
         </a>

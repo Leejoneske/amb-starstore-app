@@ -53,7 +53,7 @@ export function ContactForm() {
 
   if (sent) {
     return (
-      <div className="rounded-2xl border border-clay/60 bg-clay/10 p-8">
+      <div className="rounded-2xl border border-line bg-surface p-8 shadow-[inset_3px_0_0_0_rgb(var(--clay))]">
         <p className="font-display text-xl tracking-tight">Message sent</p>
         <p className="mt-3 text-sm leading-relaxed text-muted">
           We reply to everything, usually within two business days.
@@ -64,7 +64,7 @@ export function ContactForm() {
             setForm(EMPTY);
             setSent(false);
           }}
-          className="mt-6 rounded-full border border-line px-5 py-2 text-sm font-semibold transition-colors hover:border-accent hover:text-accent"
+          className="mt-6 rounded-full border border-line px-5 py-2 text-sm font-semibold transition-colors hover:border-ink"
         >
           Send another
         </button>
@@ -73,7 +73,7 @@ export function ContactForm() {
   }
 
   const input =
-    'w-full rounded-xl border border-line bg-paper px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted focus:border-accent disabled:opacity-60';
+    'w-full rounded-xl border border-line bg-paper px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted focus:border-ink disabled:opacity-60';
   const label = 'mb-2 block text-sm font-medium';
 
   return (
@@ -146,7 +146,7 @@ export function ContactForm() {
       </div>
 
       {error ? (
-        <p role="alert" className="mt-4 text-sm text-accent">
+        <p role="alert" className="mt-4 text-sm font-medium text-ink">
           {error}
         </p>
       ) : null}
@@ -154,7 +154,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={sending}
-        className="mt-6 rounded-full bg-ink px-7 py-3 text-sm font-semibold text-paper transition-colors hover:bg-ink/85 disabled:opacity-60"
+        className="mt-6 h-12 rounded-pill bg-accent px-7 text-[15px] font-bold tracking-[-0.2px] text-on-accent transition-opacity hover:opacity-90 disabled:opacity-40"
       >
         {sending ? 'Sending' : 'Send message'}
       </button>

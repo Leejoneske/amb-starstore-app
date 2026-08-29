@@ -34,7 +34,7 @@ export default function OptOutPage() {
           <Card>
             <p className="font-display text-lg tracking-tight">In the Telegram bot</p>
             <p className="mt-3 text-sm leading-relaxed text-muted">
-              Send <code className="rounded bg-clay/20 px-1.5 py-0.5">/opt_out</code> to the
+              Send <code className="rounded bg-clay/25 px-1.5 py-0.5 font-medium text-ink">/opt_out</code> to the
               StarStore bot and confirm when it asks. This is the faster route and the one we
               recommend.
             </p>

@@ -80,6 +80,12 @@ not be published here.
 - Say "we", never "the admin" or "the team will". Which internal role acted is
   not information an ambassador can use.
 - A figure about money belongs in `lib/program.ts`, not in a sentence.
+- Write like a person explaining the thing, not like a landing page selling it.
+  This site is the reference an ambassador comes back to, so a sentence earns
+  its place by being informative rather than persuasive.
+- No testimonials, no invented customer quotes, no numbers presented as social
+  proof. If a claim is not in the StarStore source or something we have already
+  emailed an ambassador, it does not go on the page.
 
 ## SEO
 
@@ -112,5 +118,23 @@ the tables is row level security, not the secrecy of the key. Override with
 ## Brand
 
 `public/favicon.png` is the app mark, a black star outline on a clay circle.
-Ink `#0B0A09` and clay `#DCC3AD` are sampled from it. Gold belongs to the
-Telegram star glyph alone and is never an interface colour.
+It is the only mark this site uses, in the header and the footer. Do not draw
+a new one.
+
+The palette is read out of `app-web/src/app/globals.css` in the StarStore app
+rather than picked to match it, and the token that matters most is the action
+colour. `Button.module.css` in the app states it plainly:
+
+> Ink is the action colour. There is no second accent: a screen has one thing
+> to do and it is black, everything else is a surface or a tint.
+
+So every button here is ink `#0B0A09` with white text, flipping to light on
+dark exactly as the app's `--accent` / `--on-accent` pair does. Clay `#DCC3AD`
+is the mark beside a section heading, never something to press. Gold belongs
+to the Telegram star glyph alone.
+
+The ground is pure white. The warm off-white this site used to carry made its
+pages look tinted next to the app, which is white.
+
+Icons are [lucide-react](https://lucide.dev), the set the site already
+depended on. Use one from there rather than drawing a new glyph.

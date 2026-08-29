@@ -2,7 +2,7 @@
   "name": "amb-starstore-app",
   "version": "1.0.0",
   "private": true,
-  "description": "The StarStore Ambassador Program guide — a statically exported Next.js site.",
+  "description": "The StarStore Ambassador Program guide \u2014 a statically exported Next.js site.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.74.0",
+    "lucide-react": "^0.462.0",
     "next": "^15.5.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
