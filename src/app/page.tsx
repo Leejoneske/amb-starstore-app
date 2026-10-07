@@ -18,7 +18,7 @@ export const metadata: Metadata = pageMeta({
   path: '/',
   title: 'StarStore Ambassador Program',
   description:
-    'The full guide to the StarStore Ambassador Program. Earn 30% of the margin on every trade your referrals make on StarStore, paid in USDT on TON at the start of each month.',
+    'The full guide to the StarStore Ambassador Program: earn 30% of the margin on every trade your referrals make, paid in USDT on TON each month.',
   keywords: ['how to become a StarStore ambassador', 'StarStore referral link', 'Telegram Stars commission'],
 });
 

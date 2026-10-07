@@ -8,6 +8,7 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [{ userAgent: '*', allow: '/' }],
     sitemap: `${SITE}/sitemap.xml`,
-    host: SITE,
+    // No `host`: a Yandex-only directive Yandex itself has retired. The
+    // canonical tags already say which host is the site.
   };
 }

@@ -22,11 +22,15 @@ const ROUTES: { path: string; priority: number }[] = [
   { path: '/contact', priority: 0.5 },
 ];
 
+/*
+ * No lastModified. It was `new Date()`, so every build told search engines
+ * that every page had just changed, and a date that is always today is one
+ * they learn to ignore. Leaving it out says nothing rather than something
+ * false.
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
   return ROUTES.map((route) => ({
     url: selfUrl(route.path),
-    lastModified,
     changeFrequency: 'monthly',
     priority: route.priority,
   }));

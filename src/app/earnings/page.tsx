@@ -15,7 +15,7 @@ export const metadata: Metadata = pageMeta({
   path: '/earnings',
   title: 'Earnings',
   description:
-    'What a StarStore ambassador earns: 30% of margin on every referred trade, $0.84 per 1,000 Stars, $0.30 per Premium subscription, up to $50 per referral, paid monthly in USDT on TON.',
+    'What a StarStore ambassador earns: 30% of margin on referred trades, about $0.84 per 1,000 Stars and $0.30 per Premium, up to $50 per referral.',
 });
 
 const RATE = Math.round(COMMISSION_RATE * 100);
