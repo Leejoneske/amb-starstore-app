@@ -171,17 +171,13 @@ the tables is row level security, not the secrecy of the key. Override with
 
 ## Deploying
 
-Two things build this repository, and only one of them can own the domain:
+GitHub Pages, and nothing else. `.github/workflows/deploy.yml` builds on every
+push to `main` and uploads `out/`, and `public/CNAME` is what carries
+`amb.starstore.app` into that artifact.
 
-- **GitHub Pages**, via `.github/workflows/deploy.yml`, which uploads `out/`.
-  `public/CNAME` is what carries `amb.starstore.app` into that artifact. The
-  copy at the repository root is not part of the upload and does nothing for
-  this workflow; it is left in place because removing it is only safe once the
-  Pages source is settled.
-- **Vercel**, via `vercel.json`, which pins `framework: null`,
-  `buildCommand: npm run build` and `outputDirectory: out`. Those overrides
-  exist because the Vercel project still carries the Vite preset from the site
-  this replaced, and without them the build succeeds and then fails looking for
-  a `dist/` directory a Next export never produces.
-
-Pick one and retire the other, or they will compete for the DNS.
+There used to be a second deploy on Vercel, through a `vercel.json` that
+pinned the build away from the Vite preset of the site this replaced, and a
+copy of `CNAME` at the repository root that the Pages workflow never read.
+Both were removed once Vercel was retired: two hosts building one repository
+compete for the DNS, and the one that loses still serves a copy of every page
+at an address nobody chose.
