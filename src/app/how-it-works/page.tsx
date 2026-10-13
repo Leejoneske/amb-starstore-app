@@ -82,7 +82,7 @@ export default function HowItWorksPage() {
       <Section title="How referrals are tracked">
         <div className="max-w-prose">
           <Term term="A Telegram deep link, not a browser cookie">
-            Your link opens the StarStore bot with your ambassador code attached. Telegram passes
+            Your link opens the StarStore bot with your referral code attached. Telegram passes
             that code through on the first open, so attribution does not depend on the browser the
             person used, whether they cleared their cookies, or how long they took to decide.
           </Term>

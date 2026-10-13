@@ -62,8 +62,10 @@ export default function OptOutPage() {
 
       <Section title="What happens next">
         <div className="max-w-prose">
-          <Term term="Your referral link stops working">
-            No new referrals are tracked or credited from the moment the request is processed.
+          <Term term="Your referral link keeps working">
+            It is the same link every StarStore account has, so friends who join through it still
+            earn you the standard referral commission. What ends is your place in the ambassador
+            programme.
           </Term>
           <Term term="Your balance is paid out">
             Anything you have already earned from genuine referrals is settled on the next payout
